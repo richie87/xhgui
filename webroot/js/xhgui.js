@@ -25,9 +25,11 @@ $(document).ready(function () {
 
     // Bind events for expandable search forms.
     var searchForm = $('.search-form'),
-        searchExpand = $('.search-expand');
+        searchExpand = $('.search-expand'),
+        hostSelect = $('.hostselect');
 
     searchExpand.on('click', function () {
+        hostSelect.fadeOut('fast');
         searchExpand.fadeOut('fast', function () {
             searchForm.slideDown('fast');
         });
@@ -36,6 +38,7 @@ $(document).ready(function () {
 
     $('.search-collapse').on('click', function () {
         searchForm.slideUp('fast', function () {
+            hostSelect.show();
             searchExpand.show();
         });
         return false;

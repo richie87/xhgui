@@ -14,7 +14,7 @@ class Xhgui_Controller_Run extends Xhgui_Controller
         $request = $this->_app->request();
 
         $search = array();
-        $keys = array('date_start', 'date_end', 'url');
+        $keys = array('date_start', 'date_end', 'url', 'host');
         foreach ($keys as $key) {
             if ($request->get($key)) {
                 $search[$key] = $request->get($key);
@@ -48,6 +48,11 @@ class Xhgui_Controller_Run extends Xhgui_Controller
             'direction' => $result['direction']
         );
 
+        $hosts = $this->_profiles->getHosts();
+        foreach ($hosts as $index => $host) {
+            $hosts[$index]['selected'] = $request->get('host') == $host['hostname'];
+        }
+
         $this->_template = 'runs/list.twig';
         $this->set(array(
             'paging' => $paging,
@@ -56,7 +61,8 @@ class Xhgui_Controller_Run extends Xhgui_Controller
             'date_format' => $this->_app->config('date.format'),
             'search' => $search,
             'has_search' => strlen(implode('', $search)) > 0,
-            'title' => $title
+            'title' => $title,
+            'hosts' => $hosts
         ));
     }
 

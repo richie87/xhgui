@@ -10,7 +10,8 @@
 
 {% if runs|length or has_search %}
 <div class="searchbar clearfix">
-    <a href="#" class="pull-right btn btn-small search-expand" title="Show search form">
+    {% include 'partials/hostselect.twig' %}
+    <a href="#" class="pull-right btn btn-small search-expand" title="Show search form" style="margin-top: 20px;">
         <i class="icon-search"></i> Search
     </a>
 

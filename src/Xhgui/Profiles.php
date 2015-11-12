@@ -252,6 +252,16 @@ class Xhgui_Profiles
         return $this->paginate($options);
     }
 
+    public function getHosts() {
+        $hosts = array();
+        $result = $this->_collection->group(array('meta.SERVER.APPLICATION_HOST' => true), array('count' => 0), 'function (obj, prev) { }');
+        foreach ($result['retval'] as $host) {
+            $hosts[]['hostname'] = $host['meta.SERVER.APPLICATION_HOST'];
+        }
+
+        return $hosts;
+    }
+
     /**
      * Insert a profile run.
      *

@@ -1,0 +1,19 @@
+<div style="float:left;" class="hostselect">
+    <form action="{{ url('home') }}" method="get" class="row form-inline">
+        <div class="control-group span4">
+            <label class="control-label" for="url">Host</label>
+            <div class="controls">
+                <select name="host" style="margin: 0;width: auto;">
+                    <option value="none">Choose host</option>
+                    {% for host in hosts %}
+                        <option{% if host.selected %} selected{% endif %}>{{ host.hostname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+</div>

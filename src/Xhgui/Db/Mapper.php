@@ -70,6 +70,10 @@ class Xhgui_Db_Mapper
             $conditions['meta.SERVER.HTTP_COOKIE'] = (string)$search['cookie'];
         }
 
+        if (isset($search['host']) && $search['host'] != 'none') {
+            $conditions['meta.SERVER.APPLICATION_HOST'] = (string)$search['host'];
+        }
+
         if ($hasLimit && $search['limit'][0] == "P") {
             $date = new DateTime();
             try {
